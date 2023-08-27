@@ -7,13 +7,13 @@ import { useEffect, useState } from "react";
 import usePokemonAPI from "../hooks/usePokemonAPI";
 
 //Components
-import { Pagination } from "../components";
+import { Pagination, Pokecard } from "../components";
 
 export default function PokemonDetailPage() {
   //States
   const [pokemons, setPokemons] = useState([]);
   const [count, setCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(56);
   const [pageSize, setPageSize] = useState(10);
 
   //Constants
@@ -51,26 +51,22 @@ export default function PokemonDetailPage() {
     <div>
       <h1 className="text-4xl font-bold">Pokedex</h1>
       <div
-      // className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}
+        className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}
       >
         {pokemons.map((pokemon: any) => (
-          <div
-            // style={{
-            //   background: "#78c850",
-            // }}
-            className={`bg-${pokemon.types[0].type.name}`}
-            key={pokemon.id}
-          >
-            <div className={`bg-electric`}>
-              <h2 className="text-4xl text-psychic">{pokemon.name}</h2>
-              <div>
-                {pokemon.types.map((type: any) => (
-                  <span key={type.slot}>{type.type.name}</span>
-                ))}
-              </div>
-            </div>
-            <img src={pokemon?.sprites?.front_default} alt={pokemon.name} />
-          </div>
+          <Pokecard key={pokemon.id} pokemon={pokemon} />
+          // <div
+          //   className={`bg-${pokemon.types[0].type.name}`}
+          //   key={pokemon.id}
+          // >
+          //   <h2 className="text-4xl text-psychic">{pokemon.name}</h2>
+          //   <div>
+          //     {pokemon.types.map((type: any) => (
+          //       <span key={type.slot}>{type.type.name}</span>
+          //     ))}
+          //   </div>
+          //   <img src={pokemon?.sprites?.front_default} alt={pokemon.name} />
+          // </div>
         ))}
       </div>
       <Pagination
