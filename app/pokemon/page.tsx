@@ -8,13 +8,15 @@ import usePokemonAPI from "../hooks/usePokemonAPI";
 
 //Components
 import { Pagination, Pokecard } from "../components";
+import Image from "next/image";
+import pokeball_gray from "@/public/pokeball-gray.png";
 
 export default function PokemonDetailPage() {
   //States
   const [pokemons, setPokemons] = useState([]);
   const [count, setCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(56);
-  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(12);
 
   //Constants
 
@@ -33,7 +35,6 @@ export default function PokemonDetailPage() {
             return await getPokemonDetail(pokemon.name);
           })
         );
-        console.log(updatedPokemonDatas);
         setCount(res.count);
         setPokemons(updatedPokemonDatas);
       }
@@ -48,8 +49,20 @@ export default function PokemonDetailPage() {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold">Pokedex</h1>
+    <div className="py-10 px-4 relative overflow-hidden">
+      <Image
+        style={{
+          position: "absolute",
+          right: "-30%",
+          top: "-14%",
+          opacity: "0.2",
+        }}
+        src={pokeball_gray}
+        alt="pokeball"
+        width={500}
+        height={500}
+      />
+      <h1 className="text-4xl font-black mb-10">Pokedex</h1>
       <div
         className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4`}
       >
