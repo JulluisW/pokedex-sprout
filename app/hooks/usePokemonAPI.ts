@@ -10,19 +10,35 @@ export default function usePokemonAPI() {
     }
   };
 
-  const getPokemonDetail = async (name:string): Promise<any> => {
+  const getPokemonDetail = async (name: string): Promise<any> => {
+    try {
+      const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`);
+      return res.json();
+    } catch (error) {
+      return error;
+    }
+  };
+
+  const getPokemonSpecies = async (id: number): Promise<any> => {
     try {
       const res = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${name}/`
+        `https://pokeapi.co/api/v2/pokemon-species/${id}/`
       );
       return res.json();
     } catch (error) {
-      return error
+      return error;
     }
-  }
+  };
+
+  const formatNumberToCode = (number: number) => {
+    const formattedNumber = number.toString().padStart(3, "0");
+    return `#${formattedNumber}`;
+  };
 
   return {
     getPokemons,
-    getPokemonDetail
+    getPokemonDetail,
+    getPokemonSpecies,
+    formatNumberToCode,
   };
 }

@@ -12,19 +12,9 @@ export function Pokecard({ pokemon }: Props) {
   return (
     <div
       onClick={() => router.push(`/pokemon/${pokemon.id}`)}
-      className="cursor-pointer"
+      className="min-h-[150px] cursor-pointer bg-no-repeat overflow-hidden relative rounded-[20px] p-[20px] flex flex-col gap-[10px]"
       style={{
         backgroundColor: typeColors[`${pokemon.types[0].type.name}`],
-        // backgroundImage: `url('/public/pokeball.png')`,
-        backgroundRepeat: "no-repeat",
-        overflow: "hidden",
-        position: "relative",
-        minHeight: "150px",
-        borderRadius: "20px",
-        padding: "20px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
       }}
       key={pokemon.id}
     >
@@ -40,25 +30,14 @@ export function Pokecard({ pokemon }: Props) {
         ))}
       </div>
       <Image
-        style={{
-          position: "absolute",
-          right: "-10%",
-          bottom: "-40%",
-        }}
+        className="absolute right-[-10%] bottom-[-40%] opacity-50"
         src={pokeball}
         alt="pokeball"
         width={200}
         height={200}
       />
       <img
-        style={{
-          position: "absolute",
-          right: "5%",
-          bottom: "0",
-          width: "40%",
-          height: "auto",
-          // height: "20%",
-        }}
+        className="absolute right-[5%] bottom-0 w-[40%] h-auto"
         src={pokemon.sprites.other["official-artwork"].front_default}
         alt={pokemon.name}
       />

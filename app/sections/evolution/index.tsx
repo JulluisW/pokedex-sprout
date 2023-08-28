@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export function Evolution({}: Props) {
   return (
-    <div>Evolution</div>
-  )
+    <div className="w-full h-full flex justify-center px-7 text-3xl items-center">
+      <h1>Evolution Coming Soon!</h1>
+    </div>
+  );
 }
